@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  edge:
+    build: ./edge
+    ports:
+      - "9898:9898"
+    volumes:
+      - ./edge/results:/app/results
+
+  device:
+    build: ./device
+    depends_on:
+      - edge
+    volumes:
+      - ./device/results:/app/results
